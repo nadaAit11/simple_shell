@@ -80,4 +80,4 @@ Please refer to the GitHub repository for the simple shell project for further d
 Contributors :
 
 . Nazih Touih
-. Nada Ait Kadar
+. Nada Ait Kidar
