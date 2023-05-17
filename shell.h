@@ -64,7 +64,7 @@ typedef struct sep_list_s
  * struct line_list_s - single linked list
  * @line: command line
  * @next: next node
- * @Description: single linked list to store command lines
+ * Description: single linked list to store command lines
  */
 
 typedef struct line_list_s
