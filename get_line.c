@@ -16,7 +16,7 @@ void bring_line(char **lineptr, size_t *n, char *buffer, size_t j)
 			*n = j;
 		else
 			*n = BUFSIZE;
-		*Iineptr = buffer;
+		*lineptr = buffer;
 	}
 	else if (*n < j)
 	{

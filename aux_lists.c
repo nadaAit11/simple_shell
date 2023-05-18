@@ -67,7 +67,7 @@ void free_sep_list(sep_list **head)
 
 line_list *add_line_node_end(line_list **head, char *line)
 {
-	line_list *new, *tmp;
+	line_list *new, *temp;
 
 	new = malloc(sizeof(line_list));
 	if (new == NULL)

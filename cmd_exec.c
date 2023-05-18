@@ -9,7 +9,7 @@
 
 int is_cdir(char *path, int *i)
 {
-	if (path[*i] == ":")
+	if (path[*i] == ':')
 		return (1);
 
 	while (path[*i] != ':' && path[*i])

@@ -16,7 +16,7 @@ void check_env(r_var **h, char *in, data_shell *data)
 	_env = data->_environ;
 	for (row = 0; _env[row]; row++)
 	{
-		for (j = 1; chr = 0; _env[row][chr]; chr++)
+		for (j = 1, chr = 0; _env[row][chr]; chr++)
 		{
 			if (_env[row][chr] == '=')
 			{
@@ -57,7 +57,7 @@ int check_vars(r_var **h, char *in, char *st, data_shell *data)
 		if (in[i] == '$')
 		{
 			if (in[i + 1] == '?')
-				add_rvar_node(h, 2, st, lst), i++);
+				add_rvar_node(h, 2, st, lst), i++;
 			else if (in[i + 1] == '$')
 				add_rvar_node(h, 2, data->pid, lpd), i++;
 			else if (in[i + 1] == '\n')

@@ -146,7 +146,7 @@ int check_syntax_error(data_shell *datash, char *input)
 	f_char = first_char(input, &begin);
 	if (f_char == -1)
 	{
-		print_syntax_error(datash, inputn begin, 0);
+		print_syntax_error(datash, input, begin, 0);
 		return (1);
 	}
 
