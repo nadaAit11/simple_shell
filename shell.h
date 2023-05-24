@@ -203,7 +203,7 @@ int _unsetenv(data_shell *datash);
 
 
 /* cd.c */
-void cd_dot(data_shell *datash);
+void Cd_dot(data_shell *datash);
 void cd_to(data_shell *datash);
 void cd_previous(data_shell *datash);
 void cd_to_home(data_shell *datash);

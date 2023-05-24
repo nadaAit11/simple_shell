@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * cd_dot - changes to the parent directory
+ * Cd_dot - changes to the parent directory
  *
  * @datash: data relevant (environ)
  *
  * Return: void
  */
-void cd_dot(data_shell *datash)
+void Cd_dot(data_shell *datash)
 {
 	char pwd[PATH_MAX];
 	char *dir, *cp_pwd, *cp_strtok_pwd;
