@@ -180,7 +180,7 @@ char **split_line(char *input)
 		if (i == bsize)
 		{
 			bsize += TOK_BUFSIZE;
-			Tokens = _Reallocdp(tokens, i, sizeof(char *) * bsize);
+			Tokens = _Reallocdp(Tokens, i, sizeof(char *) * bsize);
 			if (Tokens == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);
