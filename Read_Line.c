@@ -8,9 +8,9 @@
 char *read_line(int *i_eof)
 {
 	char *input = NULL;
-	size_t bufsize = 0;
+	size_t bufSize = 0;
 
-	*i_eof = getline(&input, &bufsize, stdin);
+	*i_eof = getline(&input, &bufSize, stdin);
 
 	return (input);
 }
