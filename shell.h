@@ -195,11 +195,11 @@ char *_Getenv(const char *name, char **_environ);
 int _Env(data_shell *datash);
 
 
-/* env2.c */
-char *copy_info(char *name, char *value);
-void set_env(char *name, char *value, data_shell *datash);
-int _setenv(data_shell *datash);
-int _unsetenv(data_shell *datash);
+/* Env2.c */
+char *Copy_Info(char *name, char *value);
+void Set_Env(char *name, char *value, data_shell *datash);
+int _Setenv(data_shell *datash);
+int _Unsetenv(data_shell *datash);
 
 
 /* Cd.c */

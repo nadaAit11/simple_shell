@@ -13,11 +13,11 @@ void Cd_dot(data_shell *datash)
 
 	getcwd(pwd, sizeof(pwd));
 	cp_pwd = _strdup(pwd);
-	set_env("OLDPWD", cp_pwd, datash);
+	Set_Env("OLDPWD", cp_pwd, datash);
 	dire = datash->args[1];
 	if (_strcmp(".", dire) == 0)
 	{
-		set_env("PWD", cp_pwd, datash);
+		Set_Env("PWD", cp_pwd, datash);
 		free(cp_pwd);
 		return;
 	}
@@ -39,12 +39,12 @@ void Cd_dot(data_shell *datash)
 	if (cp_strtok_pwd != NULL)
 	{
 		chdir(cp_strtok_pwd);
-		set_env("PWD", cp_strtok_pwd, datash);
+		Set_Env("PWD", cp_strtok_pwd, datash);
 	}
 	else
 	{
 		chdir("/");
-		set_env("PWD", "/", datash);
+		Set_Env("PWD", "/", datash);
 	}
 	datash->status = 0;
 	free(cp_pwd);
@@ -71,10 +71,10 @@ void Cd_to(data_shell *datash)
 	}
 
 	cp_pwd = _strdup(pwd);
-	set_env("OLDPWD", cp_pwd, datash);
+	Set_Env("OLDPWD", cp_pwd, datash);
 
 	cp_dire = _strdup(dire);
-	set_env("PWD", cp_dire, datash);
+	Set_Env("PWD", cp_dire, datash);
 
 	free(cp_pwd);
 	free(cp_dire);
@@ -106,12 +106,12 @@ void Cd_previous(data_shell *datash)
 	else
 		cp_Oldpwd = _strdup(p_Oldpwd);
 
-	set_env("OLDPWD", cp_Pwd, datash);
+	Set_Env("OLDPWD", cp_Pwd, datash);
 
 	if (chdir(cp_Oldpwd) == -1)
-		set_env("PWD", cp_Pwd, datash);
+		Set_Env("PWD", cp_Pwd, datash);
 	else
-		set_env("PWD", cp_Oldpwd, datash);
+		Set_Env("PWD", cp_Oldpwd, datash);
 
 	p_Pwd = _Getenv("PWD", datash->_environ);
 
@@ -147,7 +147,7 @@ void Cd_to_home(data_shell *datash)
 
 	if (Home == NULL)
 	{
-		set_env("OLDPWD", p_Pwd, datash);
+		Set_Env("OLDPWD", p_Pwd, datash);
 		free(p_Pwd);
 		return;
 	}
@@ -159,8 +159,8 @@ void Cd_to_home(data_shell *datash)
 		return;
 	}
 
-	set_env("OLDPWD", p_Pwd, datash);
-	set_env("PWD", Home, datash);
+	Set_Env("OLDPWD", p_Pwd, datash);
+	Set_Env("PWD", Home, datash);
 	free(p_Pwd);
 	datash->status = 0;
 }

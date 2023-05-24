@@ -42,7 +42,7 @@ char *_Getenv(const char *name, char **_environ)
 	ptr_envi = NULL;
 	mv = 0;
 	/* Compare all environment variable */
-	/* environ is declared in the header file */
+	/* The 'environ' variable is declared in the 'unistd.h' header file */
 	for (i = 0; _environ[i]; i++)
 	{
 		/* if name en env are equal */

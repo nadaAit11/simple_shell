@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * copy_info - copies info to create.
+ * Copy_Info - Copies info to create.
  * a new env or alias.
  * @name: name
  * @value: value ( env or alias).
  * Return: new env or alias
  */
 
-char *copy_info(char *name, char *value)
+char *Copy_Info(char *name, char *value)
 {
 	char *new;
 	int length_name, length_value, length;
@@ -27,14 +27,14 @@ char *copy_info(char *name, char *value)
 }
 
 /**
- * set_env - sets an environment variable.
+ * Set_Env - sets an environment variable.
  * @name: name of the environment variable.
- * @value: value of the environment variable.
+ * @value: The value of the environment variable.
  * @datash: data structure (envrion).
  * Return: void
  */
 
-void set_env(char *name, char *value, data_shell *datash)
+void Set_Env(char *name, char *value, data_shell *datash)
 {
 	int i;
 	char *var_envi, *name_envi;
@@ -46,7 +46,7 @@ void set_env(char *name, char *value, data_shell *datash)
 		if (_strcmp(name_envi, name) == 0)
 		{
 			free(datash->_environ[i]);
-			datash->_environ[i] = copy_info(name_envi, value);
+			datash->_environ[i] = Copy_Info(name_envi, value);
 			free(var_envi);
 			return;
 		}
@@ -54,18 +54,18 @@ void set_env(char *name, char *value, data_shell *datash)
 	}
 
 	datash->_environ = _reallocdp(datash->_environ, i, sizeof(char *) * (i + 2));
-	datash->_environ[i] = copy_info(name, value);
+	datash->_environ[i] = Copy_Info(name, value);
 	datash->_environ[i + 1] = NULL;
 }
 
 /**
- * _setenv - compares env variables names.
+ * _Setenv - Compares env variables names.
  * with the name passed
  * @datash: data relevant (env's name and value)
  * Return: 1 on success
  */
 
-int _setenv(data_shell *datash)
+int _Setenv(data_shell *datash)
 {
 	if (datash->args[1] == NULL || datash->args[2] == NULL)
 	{
@@ -73,18 +73,18 @@ int _setenv(data_shell *datash)
 		return (1);
 	}
 
-	set_env(datash->args[1], datash->args[2], datash);
+	Set_Env(datash->args[1], datash->args[2], datash);
 
 	return (1);
 }
 
 /**
- * _unsetenv - deletes an environment variable.
+ * _Unsetenv - Deletes an environment variable.
  * @datash: data relevant (env name).
  * Return: 1 on success.
  */
 
-int _unsetenv(data_shell *datash)
+int _Unsetenv(data_shell *datash)
 {
 	char **realloc_env;
 	char *var_envi, *name_envi;
