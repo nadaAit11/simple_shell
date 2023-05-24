@@ -29,7 +29,7 @@ char *Copy_Info(char *name, char *value)
 /**
  * Set_Env - sets an environment variable.
  * @name: name of the environment variable.
- * @value: The value of the environment variable.
+ * @value: Represents the value assigned to the environment variable.
  * @datash: data structure (envrion).
  * Return: void
  */
