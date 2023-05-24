@@ -81,7 +81,7 @@ int first_char(char *input, int *i)
 }
 
 /**
- * print_syntax_error - prints when a syntax error is found
+ * Print_Syntax_Error - prints when a syntax error is found
  * @datash: data structure
  * @input: input string
  * @i: index of the error
@@ -89,7 +89,7 @@ int first_char(char *input, int *i)
  * Return: no return
  */
 
-void print_syntax_error(data_shell *datash, char *input, int i, int bool)
+void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool)
 {
 	char *msg, *msg2, *msg3, *error, *counter;
 	int length;
