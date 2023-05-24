@@ -20,7 +20,7 @@ void check_env(r_var **h, char *in, data_shell *data)
 		{
 			if (_envi[row][chr] == '=')
 			{
-				lval = _strlen(_env[row] + chr + 1);
+				lval = _strlen(_envi[row] + chr + 1);
 				add_rvar_node(h, j, _envi[row] + chr + 1, lval);
 				return;
 			}

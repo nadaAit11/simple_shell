@@ -63,7 +63,7 @@ void aux_help_general(void)
 	Help = "[dir]\nexit: exit [n]\n  env: env [option] [name=value] [command ";
 	write(STDOUT_FILENO, Help, _strlen(Help));
 	Help = "[args]]\n  setenv: setenv [variable] [value]\n  unsetenv: ";
-	write(STDOUT_FILENO, help, _strlen(Help));
+	write(STDOUT_FILENO, Help, _strlen(Help));
 	Help = "unsetenv [variable]\n";
 	write(STDOUT_FILENO, Help, _strlen(Help));
 }

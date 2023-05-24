@@ -135,7 +135,7 @@ int split_commands(data_shell *datash, char *input)
 	{
 		datash->input = list_l->line;
 		datash->args = split_line(datash->input);
-		loop = Exec_Line(datash);
+		Loop = Exec_Line(datash);
 		free(datash->args);
 
 		if (Loop == 0)
@@ -180,7 +180,7 @@ char **split_line(char *input)
 		if (i == bsize)
 		{
 			bsize += TOK_BUFSIZE;
-			Tokens = _reallocdp(tokens, i, sizeof(char *) * bsize);
+			Tokens = _reallocdp(Tokens, i, sizeof(char *) * bsize);
 			if (Tokens == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);
