@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
- * strcat_cd - function that concatenates the message for cd error.
+ * Strcat_Cd - Function that concatenates an error the message for 'cd'
+ * command.
  *
  * @datash: data relevant (directory)
  * @msg: message to print
@@ -10,7 +11,7 @@
  * Return: error message
  */
 
-char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
+char *Strcat_Cd(data_shell *datash, char *msg, char *error, char *ver_str)
 {
 	char *illegal_Flag;
 
@@ -40,12 +41,12 @@ char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
 }
 
 /**
- * error_get_cd - error message for cd command in get_cd.
+ * Error_Get_Cd - Error message for cd command in get_cd.
  * @datash: data relevant (directory)
  * Return: error message
  */
 
-char *error_get_cd(data_shell *datash)
+char *Error_Get_Cd(data_shell *datash)
 {
 	int length, length_id;
 	char *Error, *ver_str, *Msg;
@@ -71,19 +72,19 @@ char *error_get_cd(data_shell *datash)
 		free(ver_str);
 		return (NULL);
 	}
-	Error = strcat_cd(datash, Msg, Error, ver_str);
+	Error = Strcat_Cd(datash, Msg, Error, ver_str);
 	free(ver_str);
 
 	return (Error);
 }
 
 /**
- * error_not_found - generic error message for command not found.
+ * Error_Not_Found - Generic error message for a command not found.
  * @datash: data relevant (counter, arguments).
  * Return: Error message
  */
 
-char *error_not_found(data_shell *datash)
+char *Error_Not_Found(data_shell *datash)
 {
 	int length;
 	char *Error;
@@ -111,13 +112,13 @@ char *error_not_found(data_shell *datash)
 }
 
 /**
- * error_exit_shell - generic error message for exit in get_exit.
+ * Error_Exit_Shell - Generic error message for exit in get_exit.
  * @datash: data relevant (counter, arguments)
  *
  * Return: Error message
  */
 
-char *error_exit_shell(data_shell *datash)
+char *Error_Exit_Shell(data_shell *datash)
 {
 	int length;
 	char *Error;

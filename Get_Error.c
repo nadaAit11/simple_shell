@@ -15,19 +15,19 @@ int get_error(data_shell *datash, int eval)
 	switch (eval)
 	{
 		case -1:
-			error = error_env(datash);
+			error = Error_Env(datash);
 			break;
 		case 126:
-			error = error_path_126(datash);
+			error = Error_Path_126(datash);
 			break;
 		case 127:
-			error = error_not_found(datash);
+			error = Error_Not_Found(datash);
 			break;
 		case 2:
 			if (_strcmp("exit", datash->args[0]) == 0)
-				error = error_exit_shell(datash);
+				error = Error_Exit_Shell(datash);
 			else if (_strcmp("cd", datash->args[0]) == 0)
-				error = error_get_cd(datash);
+				error = Error_Get_Cd(datash);
 			break;
 	}
 
