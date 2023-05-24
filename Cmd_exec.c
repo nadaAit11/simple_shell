@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * is_cdir - checks ":" if is in the current directory
+ * Is_Cdir - Checks if a ":" is present in the current directory.
  * @path: type char pointer char
  * @i: type int pointer of index
  * Return: 1 if the path is searchable in the cd, 0 otherwise
  */
 
-int is_cdir(char *path, int *i)
+int Is_Cdir(char *path, int *i)
 {
 	if (path[*i] == ':')
 		return (1);
@@ -24,13 +24,13 @@ int is_cdir(char *path, int *i)
 }
 
 /**
- * _which - locates a command
+ * _Which - locates the executable file for a given command.
  * @cmd: command name
  * @_environ: environment variable
  * Return: location of the command
  */
 
-char *_which(char *cmd, char **_environ)
+char *_Which(char *cmd, char **_environ)
 {
 	char *path, *ptr_path, *token_path, *dir;
 	int len_dir, len_cmd, i;
@@ -45,7 +45,7 @@ char *_which(char *cmd, char **_environ)
 		i = 0;
 		while (token_path != NULL)
 		{
-			if (is_cdir(path, &i))
+			if (Is_Cdir(path, &i))
 				if (stat(cmd, &st) == 0)
 					return (cmd);
 			len_dir = _strlen(token_path);
@@ -74,13 +74,13 @@ char *_which(char *cmd, char **_environ)
 }
 
 /**
- * is_executable - determines if is an executable
+ * Is_Executable - Determines if a file is executable.
  *
  * @datash: data structure
  * Return: 0 if is not an executable, other number if it does
  */
 
-int is_executable(data_shell *datash)
+int Is_Executable(data_shell *datash)
 {
 	struct stat st;
 	int i;
@@ -119,13 +119,13 @@ int is_executable(data_shell *datash)
 }
 
 /**
- * check_error_cmd - verifies if user has permissions to access
+ * Check_Error_Cmd - Verifies if user has permissions to access
  * @dir: destination directory
  * @datash: data structure
  * Return: 1 if there is an error, 0 if not
  */
 
-int check_error_cmd(char *dir, data_shell *datash)
+int Check_Error_Cmd(char *dir, data_shell *datash)
 {
 	if (dir == NULL)
 	{
@@ -155,12 +155,12 @@ int check_error_cmd(char *dir, data_shell *datash)
 }
 
 /**
- * cmd_exec - executes command lines
+ * Cmd_Exec - Executes command lines.
  * @datash: data relevant (args and input)
  * Return: 1 on success
  */
 
-int cmd_exec(data_shell *datash)
+int Cmd_Exec(data_shell *datash)
 {
 	pid_t pd;
 	pid_t wpd;
@@ -169,18 +169,18 @@ int cmd_exec(data_shell *datash)
 	char *dir;
 	(void) wpd;
 
-	exec = is_executable(datash);
+	exec = Is_Executable(datash);
 	if (exec == 0)
 	{
-		dir = _which(datash->args[0], datash->_environ);
-		if (check_error_cmd(dir, datash) == 1)
+		dir = _Which(datash->args[0], datash->_environ);
+		if (Check_Error_Cmd(dir, datash) == 1)
 			return (1);
 	}
 	pd = fork();
 	if (pd == 0)
 	{
 		if (exec == 0)
-			dir = _which(datash->args[0], datash->_environ);
+			dir = _Which(datash->args[0], datash->_environ);
 		else
 			dir = datash->args[0];
 		execve(dir + exec, datash->args, datash->_environ);
