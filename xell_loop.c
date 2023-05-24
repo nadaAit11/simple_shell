@@ -26,7 +26,7 @@ char *without_comment(char *in)
 	}
 	if (UP_TO != 0)
 	{
-		in = _realloc(in, j, UP_TO + 1);
+		in = _Realloc(in, j, UP_TO + 1);
 		in[UP_TO] = '\0';
 	}
 	return (in);

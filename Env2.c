@@ -53,7 +53,7 @@ void Set_Env(char *name, char *value, data_shell *datash)
 		free(var_envi);
 	}
 
-	datash->_environ = _reallocdp(datash->_environ, i, sizeof(char *) * (i + 2));
+	datash->_environ = _Reallocdp(datash->_environ, i, sizeof(char *) * (i + 2));
 	datash->_environ[i] = Copy_Info(name, value);
 	datash->_environ[i + 1] = NULL;
 }

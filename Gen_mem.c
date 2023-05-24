@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * _memcpy - copies information between void pointers
+ * _Memcpy - Copies information between void pointers
  * @newptr: destination pointer
  * @ptr: source pointer
  * @size: size of the new pointer
  * Return: no return
  */
-void _memcpy(void *newptr, const void *ptr, unsigned int size)
+void _Memcpy(void *newptr, const void *ptr, unsigned int size)
 {
 	char *char_ptr = (char *)ptr;
 	char *char_newptr = (char *)newptr;
@@ -17,15 +17,16 @@ void _memcpy(void *newptr, const void *ptr, unsigned int size)
 		char_newptr[i] = char_ptr[i];
 }
 /**
- * _realloc - reallocates a memory block
+ * _Realloc - Reallocates a memory block with a diffrent size.
  * @ptr: pointer to the memory previously allocated
  * @old_size: size, in bytes, of the allocated space of ptr
- * @new_size: new size, in bytes, of the new memory block
+ * @new_size: The new size, in bytes, of the reallocated memory block.
  * Return: ptr
- * if new_size == old_size, returns ptr without changes
+ * if @new_size is equal to the original size (@old_size), the function return
+ * the pointer (@ptr) without making any changes.
  * if malloc fails, returns NULL
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_Realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *newptr;
 
@@ -45,23 +46,24 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (NULL);
 
 	if (new_size < old_size)
-		_memcpy(newptr, ptr, new_size);
+		_Memcpy(newptr, ptr, new_size);
 	else
-		_memcpy(newptr, ptr, old_size);
+		_Memcpy(newptr, ptr, old_size);
 	free(ptr);
 	return (newptr);
 }
 
 /**
- * _reallocdp - reallocates a memory block of a double pointer
+ * _Reallocdp - reallocates a memory block  pointed to by a double pointer.
  * @ptr: double pointer to the memory previously allocated
  * @old_size: size, in bytes, of the allocated space of ptr
- * @new_size: new size, in bytes, of the new memory block
+ * @new_size: The new size, in bytes, of the reallocated memory block.
  * Return: ptr
- * if new_size == old_size, returns ptr without changes
+ * if @new_size is equal to the original size (@old_size), the function
+ * returns the pointer (@ptr) without making any changes.
  * if malloc fails, returns NULL
  */
-char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
+char **_Reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
 {
 	char **newptr;
 	unsigned int i;
