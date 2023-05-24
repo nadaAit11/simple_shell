@@ -210,7 +210,7 @@ void cd_to_home(data_shell *datash);
 
 
 /* cd_shell.c */
-int cd_shell(data_shell *datash);
+int Cd_shell(data_shell *datash);
 
 
 /* get_builtin */
