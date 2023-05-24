@@ -36,7 +36,7 @@ char *_Which(char *cmd, char **_environ)
 	int leng_dir, leng_cmd, i;
 	struct stat st;
 
-	path = _getenv("PATH", _environ);
+	path = _Getenv("PATH", _environ);
 	if (path)
 	{
 		ptr_path = _strdup(path);

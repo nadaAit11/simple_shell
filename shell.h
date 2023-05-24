@@ -190,9 +190,9 @@ int Check_Error_Cmd(char *dir, data_shell *datash);
 int Cmd_Exec(data_shell *datash);
 
 
-/* env1.c */
-char *_getenv(const char *name, char **_environ);
-int _env(data_shell *datash);
+/* Env1.c */
+char *_Getenv(const char *name, char **_environ);
+int _Env(data_shell *datash);
 
 
 /* env2.c */
