@@ -18,8 +18,10 @@ void _Memcpy(void *newptr, const void *ptr, unsigned int size)
 }
 /**
  * _Realloc - Reallocates a memory block with a diffrent size.
- * @ptr: pointer to the memory previously allocated
- * @old_size: size, in bytes, of the allocated space of ptr
+ * @ptr: Pointer to the memory block  previously allocated.
+ * @old_size: The size, in bytes, of the allocated space of the memory block
+ * pointed to by @ptr.
+ *
  * @new_size: The new size, in bytes, of the reallocated memory block.
  * Return: ptr
  * if @new_size is equal to the original size (@old_size), the function return
@@ -55,8 +57,10 @@ void *_Realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 /**
  * _Reallocdp - reallocates a memory block  pointed to by a double pointer.
- * @ptr: double pointer to the memory previously allocated
- * @old_size: size, in bytes, of the allocated space of ptr
+ * @ptr: Double pointer to the memory block previously allocated.
+ * @old_size: The size, in bytes, of the allocated space for the memory block
+ * pointed to by @ptr.
+ *
  * @new_size: The new size, in bytes, of the reallocated memory block.
  * Return: ptr
  * if @new_size is equal to the original size (@old_size), the function
