@@ -105,18 +105,18 @@ typedef struct builtin_s
 } builtin_t;
 
 
-/* aux_lists.c */
+/* Lists.c */
 sep_list *add_sep_node_end(sep_list **head, char sep);
 void free_sep_list(sep_list **head);
 line_list *add_line_node_end(line_list **head, char *line);
 void free_line_list(line_list **head);
 
 
-/* aux_lists2.c */
+/* Lists2.c */
 r_var *add_rvar_node(r_var **head, int lvar, char *var, int lval);
 void free_rvar_list(r_var **head);
 
-/* aux_str functions */
+/* Str.c */
 char *_strcat(char *dest, const char *src);
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
@@ -130,14 +130,14 @@ void *_Realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **_Reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
 
 
-/* aux_str2.c */
+/* Str2.c */
 char *_strdup(const char *s);
 int _strlen(const char *s);
 int cmp_chars(char str[], const char *delim);
 char *_strtok(char str[], const char *delim);
 int _isdigit(const char *s);
 
-/* aux_str3.c */
+/* Str3.c */
 void rev_string(char *s);
 
 
@@ -149,16 +149,16 @@ void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool);
 int Check_Syntax_Error(data_shell *datash, char *input);
 
 
-/* shell_loop.c */
+/* xell_loop.c */
 char *without_comment(char *in);
 void shell_loop(data_shell *datash);
 
 
-/* read_line.c */
+/* Read_Line.c */
 char *read_line(int *i_eof);
 
 
-/* split.c */
+/* Split.c */
 char *swap_char(char *input, int bool);
 void add_nodes(sep_list **head_s, line_list **head_l, char *input);
 void go_next(sep_list **list_s, line_list **list_l, data_shell *datash);
@@ -166,14 +166,14 @@ int split_commands(data_shell *datash, char *input);
 char **split_line(char *input);
 
 
-/* rep_var.c */
+/* Rep_var.c */
 void check_env(r_var **h, char *in, data_shell *data);
 int check_vars(r_var **h, char *in, char *st, data_shell *data);
 char *replaced_input(r_var **head, char *input, char *new_input, int nlen);
 char *rep_var(char *input, data_shell *datash);
 
 
-/* get_line.c */
+/* Get_Line.c */
 void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
 ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
 
@@ -213,15 +213,15 @@ void Cd_to_home(data_shell *datash);
 int Cd_shell(data_shell *datash);
 
 
-/* get_builtin */
+/* get_built_in.c */
 int (*get_builtin(char *cmd))(data_shell *datash);
 
 
-/* _exit.c */
+/* exit_xell.c */
 int exit_shell(data_shell *datash);
 
 
-/* aux_stdlib.c */
+/* STD_lib.c */
 int get_len(int n);
 char *aux_itoa(int n);
 int _atoi(char *s);
@@ -243,15 +243,15 @@ char *Error_Path_126(data_shell *datash);
 
 
 
-/* get_error.c */
+/* Get_Error.c */
 int get_error(data_shell *datash, int eval);
 
 
-/* get_sigint.c */
+/* Get_Sigint.c */
 void get_sigint(int sig);
 
 
-/* aux_help.c */
+/* Help1.c */
 void aux_help_env(void);
 void aux_help_setenv(void);
 void aux_help_unsetenv(void);
@@ -259,13 +259,13 @@ void aux_help_general(void);
 void aux_help_exit(void);
 
 
-/* aux_help2.c */
+/* Help2.c */
 void aux_help(void);
 void aux_help_alias(void);
 void aux_help_cd(void);
 
 
-/* get_help.c */
+/* Get_Help.c */
 int get_help(data_shell *datash);
 
 
