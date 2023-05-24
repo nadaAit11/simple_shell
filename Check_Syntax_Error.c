@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * repeated_char - counts the repetitions of a char
+ * Repeated_Char - Counts the number of occurrences of a character.
  *
  * @input: input string
  * @i: index
  * Return: repetitions
  */
 
-int repeated_char(char *input, int i)
+int Repeated_Char(char *input, int i)
 {
 	if (*(input - 1) == *input)
 		return (repeated_char(input - 1, i + 1));
@@ -16,13 +16,13 @@ int repeated_char(char *input, int i)
 }
 
 /**
- * error_sep_op - finds syntax errors
+ * Error_Sep_Op - Finds syntax errors related to seperators and operators.
  * @input: input string
  * @i: index
  * @last: last char read
  * Return: index of error. 0 when there are no errors
  */
-int error_sep_op(char *input, int i, char last)
+int Error_Sep_Op(char *input, int i, char last)
 {
 	int count;
 
@@ -61,13 +61,13 @@ int error_sep_op(char *input, int i, char last)
 }
 
 /**
- * first_char - finds index of the first char
+ * First_Char - Finds the index of the first char
  * @input: input string
  * @i: index
  * Return: 1 if there is an error, 0 in other case
  */
 
-int first_char(char *input, int *i)
+int First_Char(char *input, int *i)
 {
 	for (*i = 0; input[*i]; *i += 1)
 	{
@@ -129,7 +129,7 @@ void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool)
 }
 
 /**
- * check_syntax_error - intermediate function to find
+ * Check_Syntax_Error - Intermediate function to find
  * and print a syntax error
  *
  * @datash: data structure
@@ -137,7 +137,7 @@ void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool)
  * Return: 1 if there is an error, 0 in other case
  */
 
-int check_syntax_error(data_shell *datash, char *input)
+int Check_Syntax_Error(data_shell *datash, char *input)
 {
 	int begin = 0;
 	int f_char = 0;

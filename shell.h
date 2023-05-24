@@ -142,11 +142,11 @@ void rev_string(char *s);
 
 
 /* Check_Syntax_Error.c */
-int repeated_char(char *input, int i);
-int error_sep_op(char *input, int i, char last);
-int first_char(char *input, int *i);
+int Repeated_Char(char *input, int i);
+int Error_Sep_Op(char *input, int i, char last);
+int First_Char(char *input, int *i);
 void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool);
-int check_syntax_error(data_shell *datash, char *input);
+int Check_Syntax_Error(data_shell *datash, char *input);
 
 
 /* shell_loop.c */
