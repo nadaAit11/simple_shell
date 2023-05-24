@@ -43,14 +43,14 @@ sep_list *add_sep_node_end(sep_list **head, char sep)
 void free_sep_list(sep_list **head)
 {
 	sep_list *temp;
-	sep_list *curr;
+	sep_list *cur;
 
 	if (head != NULL)
 	{
-		curr = *head;
-		while ((temp = curr) != NULL)
+		cur = *head;
+		while ((temp = cur) != NULL)
 		{
-			curr = curr->next;
+			cur = cur->next;
 			free(temp);
 		}
 		*head = NULL;
@@ -94,20 +94,20 @@ line_list *add_line_node_end(line_list **head, char *line)
 /**
  * free_line_list - frees a line_list
  * @head: head of the linked list
- * Return: no return
+ * Return: void
  */
 
 void free_line_list(line_list **head)
 {
 	line_list *temp;
-	line_list *curr;
+	line_list *cur;
 
 	if (head != NULL)
 	{
-		curr = *head;
-		while ((temp = curr) != NULL)
+		cur = *head;
+		while ((temp = cur) != NULL)
 		{
-			curr = curr->next;
+			cur = cur->next;
 			free(temp);
 		}
 		*head = NULL;

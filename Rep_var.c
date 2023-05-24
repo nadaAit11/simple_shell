@@ -5,26 +5,26 @@
  * @h: head of linked list
  * @in: input string
  * @data: data structure
- * Return: void
+ * Return: nothing
  */
 
 void check_env(r_var **h, char *in, data_shell *data)
 {
 	int row, chr, j, lval;
-	char **_env;
+	char **_envi;
 
-	_env = data->_environ;
-	for (row = 0; _env[row]; row++)
+	_envi = data->_environ;
+	for (row = 0; _envi[row]; row++)
 	{
-		for (j = 1, chr = 0; _env[row][chr]; chr++)
+		for (j = 1, chr = 0; _envi[row][chr]; chr++)
 		{
-			if (_env[row][chr] == '=')
+			if (_envi[row][chr] == '=')
 			{
-				lval = _strlen(_env[row] + chr + 1);
-				add_rvar_node(h, j, _env[row] + chr + 1, lval);
+				lval = _strlen(_envi[row] + chr + 1);
+				add_rvar_node(h, j, _envi[row] + chr + 1, lval);
 				return;
 			}
-			if (in[j] == _env[row][chr])
+			if (in[j] == _envi[row][chr])
 				j++;
 			else
 				break;
@@ -42,14 +42,14 @@ void check_env(r_var **h, char *in, data_shell *data)
  * @in: input string
  * @st: last status of the shell
  * @data: data structure
- * Return: no return
+ * Return: nothing
  */
 
 int check_vars(r_var **h, char *in, char *st, data_shell *data)
 {
-	int i, lst, lpd;
+	int i, ls, lpd;
 
-	lst = _strlen(st);
+	ls = _strlen(st);
 	lpd = _strlen(data->pid);
 
 	for (i = 0; in[i]; i++)
@@ -57,7 +57,7 @@ int check_vars(r_var **h, char *in, char *st, data_shell *data)
 		if (in[i] == '$')
 		{
 			if (in[i + 1] == '?')
-				add_rvar_node(h, 2, st, lst), i++;
+				add_rvar_node(h, 2, st, ls), i++;
 			else if (in[i + 1] == '$')
 				add_rvar_node(h, 2, data->pid, lpd), i++;
 			else if (in[i + 1] == '\n')
@@ -87,36 +87,36 @@ int check_vars(r_var **h, char *in, char *st, data_shell *data)
 
 char *replaced_input(r_var **head, char *input, char *new_input, int nlen)
 {
-	r_var *indx;
+	r_var *index;
 	int i, j, k;
 
-	indx = *head;
+	index = *head;
 	for (j = i = 0; i < nlen; i++)
 	{
 		if (input[j] == '$')
 		{
-			if (!(indx->len_var) && !(indx->len_val))
+			if (!(index->len_var) && !(index->len_val))
 			{
 				new_input[i] = input[j];
 				j++;
 			}
-			else if (indx->len_var && !(indx->len_val))
+			else if (index->len_var && !(index->len_val))
 			{
-				for (k = 0; k < indx->len_var; k++)
+				for (k = 0; k < index->len_var; k++)
 					j++;
 				i--;
 			}
 			else
 			{
-				for (k = 0; k < indx->len_val; k++)
+				for (k = 0; k < index->len_val; k++)
 				{
-					new_input[i] = indx->val[k];
+					new_input[i] = index->val[k];
 					i++;
 				}
-				j += (indx->len_var);
+				j += (index->len_var);
 				i--;
 			}
-			indx = indx->next;
+			index = index->next;
 		}
 		else
 		{
@@ -134,27 +134,27 @@ char *replaced_input(r_var **head, char *input, char *new_input, int nlen)
  */
 char *rep_var(char *input, data_shell *datash)
 {
-	r_var *head, *indx;
-	char *status, *new_input;
+	r_var *head, *index;
+	char *stat, *new_input;
 	int olen, nlen;
 
-	status = aux_itoa(datash->status);
+	stat = aux_itoa(datash->status);
 	head = NULL;
 
-	olen = check_vars(&head, input, status, datash);
+	olen = check_vars(&head, input, stat, datash);
 
 	if (head == NULL)
 	{
-		free(status);
+		free(stat);
 		return (input);
 	}
-	indx = head;
+	index = head;
 	nlen = 0;
 
-	while (indx != NULL)
+	while (index != NULL)
 	{
-		nlen += (indx->len_val - indx->len_var);
-		indx = indx->next;
+		nlen += (index->len_val - index->len_var);
+		index = index->next;
 	}
 	nlen += olen;
 	new_input = malloc(sizeof(char) * (nlen + 1));
@@ -163,7 +163,7 @@ char *rep_var(char *input, data_shell *datash)
 	new_input = replaced_input(&head, input, new_input, nlen);
 
 	free(input);
-	free(status);
+	free(stat);
 	free_rvar_list(&head);
 
 	return (new_input);

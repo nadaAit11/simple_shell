@@ -45,8 +45,8 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 {
 	int i;
 	static ssize_t input;
-	ssize_t retval;
-	char *buffer;
+	ssize_t retVal;
+	char *buf;
 	char t = 'z';
 
 	if (input == 0)
@@ -55,15 +55,15 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 		return (-1);
 	input = 0;
 
-	buffer = malloc(sizeof(char) * BUFSIZE);
-	if (buffer == 0)
+	buf = malloc(sizeof(char) * BUFSIZE);
+	if (buf == 0)
 		return (-1);
 	while (t != '\n')
 	{
 		i = read(STDIN_FILENO, &t, 1);
 		if (i == -1 || (i == 0 && input == 0))
 		{
-			free(buffer);
+			free(buf);
 			return (-1);
 		}
 		if (i == 0 && input != 0)
@@ -72,14 +72,14 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 			break;
 		}
 		if (input >= BUFSIZE)
-			buffer = _Realloc(buffer, input, input + 1);
-		buffer[input] = t;
+			buf = _Realloc(buffer, input, input + 1);
+		buf[input] = t;
 		input++;
 	}
-	buffer[input] = '\0';
-	bring_line(lineptr, n, buffer, input);
-	retval = input;
+	buf[input] = '\0';
+	bring_line(lineptr, n, buf, input);
+	retVal = input;
 	if (i != 0)
 		input = 0;
-	return (retval);
+	return (retVal);
 }

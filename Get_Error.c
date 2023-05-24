@@ -10,31 +10,31 @@
 
 int get_error(data_shell *datash, int eval)
 {
-	char *error;
+	char *Error;
 
 	switch (eval)
 	{
 		case -1:
-			error = Error_Env(datash);
+			Error = Error_Env(datash);
 			break;
 		case 126:
-			error = Error_Path_126(datash);
+			Error = Error_Path_126(datash);
 			break;
 		case 127:
-			error = Error_Not_Found(datash);
+			Error = Error_Not_Found(datash);
 			break;
 		case 2:
 			if (_strcmp("exit", datash->args[0]) == 0)
-				error = Error_Exit_Shell(datash);
+				Error = Error_Exit_Shell(datash);
 			else if (_strcmp("cd", datash->args[0]) == 0)
-				error = Error_Get_Cd(datash);
+				Error = Error_Get_Cd(datash);
 			break;
 	}
 
-	if (error)
+	if (Error)
 	{
-		write(STDERR_FILENO, error, _strlen(error));
-		free(error);
+		write(STDERR_FILENO, Error, _strlen(Error));
+		free(Error);
 	}
 
 	datash->status = eval;
