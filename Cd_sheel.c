@@ -9,29 +9,29 @@
 
 int Cd_shell(data_shell *datash)
 {
-	char *dir;
-	int ishome, ishome2, isddash;
+	char *dire;
+	int isHome, isHome2, isDdash;
 
-	dir = datash->args[1];
+	dire = datash->args[1];
 
-	if (dir != NULL)
+	if (dire != NULL)
 	{
-		ishome = _strcmp("$HOME", dir);
-		ishome2 = _strcmp("~", dir);
-		isddash = _strcmp("--", dir);
+		isHome = _strcmp("$HOME", dire);
+		isHome2 = _strcmp("~", dire);
+		isDdash = _strcmp("--", dire);
 	}
-	if (dir == NULL || !ishome || !ishome2 || !isddash)
+	if (dire == NULL || !isHome || !isHome2 || !isDdash)
 	{
 		Cd_to_home(datash);
 		return (1);
 	}
-	if (_strcmp("-", dir) == 0)
+	if (_strcmp("-", dire) == 0)
 	{
 		Cd_previous(datash);
 		return (1);
 	}
 
-	if (_strcmp(".", dir) == 0 || _strcmp("..", dir) == 0)
+	if (_strcmp(".", dire) == 0 || _strcmp("..", dire) == 0)
 	{
 		Cd_dot(datash);
 		return (1);
