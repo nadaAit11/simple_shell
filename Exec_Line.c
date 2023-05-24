@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * exec_line - finds builtin and commands.
+ * Exec_Line - Searches for built-in commands and external commands.
  * @datash: data relevant (args).
  *
  * Return: 1 on success
  */
 
-int exec_line(data_shell *datash)
+int Exec_Line(data_shell *datash)
 {
 	int (*builtin)(data_shell *datash);
 
