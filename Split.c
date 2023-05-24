@@ -8,34 +8,34 @@
  */
 char *swap_char(char *input, int bool)
 {
-	int i;
+	int l;
 
 	if (bool == 0)
 	{
-		for (i = 0; input[i]; i++)
+		for (l = 0; input[l]; l++)
 		{
-			if (input[i] == '|')
+			if (input[l] == '|')
 			{
-				if (input[i + 1] != '|')
-					input[i] = 16;
+				if (input[l + 1] != '|')
+					input[l] = 16;
 				else
-					i++;
+					l++;
 			}
-			if (input[i] == '&')
+			if (input[l] == '&')
 			{
-				if (input[i + 1] != '&')
-					input[i] = 12;
+				if (input[l + 1] != '&')
+					input[l] = 12;
 				else
-					i++;
+					l++;
 			}
 		}
 	}
 	else
 	{
-		for (i = 0; input[i]; i++)
+		for (l = 0; input[l]; l++)
 		{
-			input[i] = (input[i] == 16 ? '|' : input[i]);
-			input[i] = (input[i] == 12 ? '&' : input[i]);
+			input[l] = (input[l] == 16 ? '|' : input[l]);
+			input[l] = (input[l] == 12 ? '&' : input[l]);
 		}
 	}
 	return (input);
@@ -45,12 +45,12 @@ char *swap_char(char *input, int bool)
  * @head_s: head of separator list
  * @head_l: head of command lines list
  * @input: input string
- * Return: no return
+ * Return: void
  */
 void add_nodes(sep_list **head_s, line_list **head_l, char *input)
 {
 	int i;
-	char *line;
+	char *ln;
 
 	input = swap_char(input, 0);
 
@@ -64,31 +64,31 @@ void add_nodes(sep_list **head_s, line_list **head_l, char *input)
 			i++;
 		}
 	}
-	line = _strtok(input, ";|&");
+	ln = _strtok(input, ";|&");
 	do {
-		line = swap_char(line, 1);
-		add_line_node_end(head_l, line);
-		line = _strtok(NULL, ";|&");
-	} while (line != NULL);
+		ln = swap_char(ln, 1);
+		add_line_node_end(head_l, ln);
+		ln = _strtok(NULL, ";|&");
+	} while (ln != NULL);
 }
 /**
  * go_next - go to the next command line stored
  * @list_s: separator list
  * @list_l: command line list
  * @datash: data structure
- * Return: no return
+ * Return: void
  */
 void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
 {
-	int loop_sep;
+	int loop_separ;
 	sep_list *ls_s;
 	line_list *ls_l;
 
-	loop_sep = 1;
+	loop_separ = 1;
 	ls_s = *list_s;
 	ls_l = *list_l;
 
-	while (ls_s != NULL && loop_sep)
+	while (ls_s != NULL && loop_separ)
 	{
 		if (datash->status == 0)
 		{
@@ -100,11 +100,11 @@ void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
 		else
 		{
 			if (ls_s->separator == '|' || ls_s->separator == ';')
-				loop_sep = 0;
+				loop_separ = 0;
 			if (ls_s->separator == '&')
 				ls_l = ls_l->next, ls_s = ls_s->next;
 		}
-		if (ls_s != NULL && !loop_sep)
+		if (ls_s != NULL && !loop_separ)
 			ls_s = ls_s->next;
 	}
 	*list_s = ls_s;

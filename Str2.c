@@ -9,13 +9,13 @@
 char *_strdup(const char *s)
 {
 	char *new;
-	size_t len;
+	size_t length;
 
-	len = _strlen(s);
-	new = malloc(sizeof(char) * (len + 1));
+	length = _strlen(s);
+	new = malloc(sizeof(char) * (length + 1));
 	if (new == NULL)
 		return (NULL);
-	_memcpy(new, s, len + 1);
+	_memcpy(new, s, length + 1);
 	return (new);
 }
 
@@ -26,12 +26,12 @@ char *_strdup(const char *s)
  */
 int _strlen(const char *s)
 {
-	int len;
+	int length;
 
-	for (len = 0; s[len] != 0; len++)
+	for (length = 0; s[length] != 0; length++)
 	{
 	}
-	return (len);
+	return (length);
 }
 
 /**
@@ -69,8 +69,8 @@ int cmp_chars(char str[], const char *delim)
 
 char *_strtok(char str[], const char *delim)
 {
-	static char *splitted, *str_end;
-	char *str_start;
+	static char *splitted, *string_end;
+	char *string_start;
 	unsigned int i, bool;
 
 	if (str != NULL)
@@ -79,15 +79,15 @@ char *_strtok(char str[], const char *delim)
 			return (NULL);
 		splitted = str;
 		i = _strlen(str);
-		str_end = &str[i];
+		string_end = &str[i];
 	}
-	str_start = splitted;
-	if (str_start == str_end)
+	string_start = splitted;
+	if (string_start == string_end)
 		return (NULL);
 
 	for (bool = 0; *splitted; splitted++)
 	{
-		if (splitted != str_start)
+		if (splitted != string_start)
 			if (*splitted && *(splitted - 1) == '\0')
 				break;
 		for (i = 0; delim[i]; i++)
@@ -95,8 +95,8 @@ char *_strtok(char str[], const char *delim)
 			if (*splitted == delim[i])
 			{
 				*splitted = '\0';
-				if (splitted == str_start)
-					str_start++;
+				if (splitted == string_start)
+					string_start++;
 				break;
 			}
 		}
@@ -105,13 +105,13 @@ char *_strtok(char str[], const char *delim)
 	}
 	if (bool == 0)
 		return (NULL);
-	return (str_start);
+	return (string_start);
 }
 
 /**
- * _isdigit - defines if string passed is a number
+ * _isdigit - defines if a string is a number
  * @s: input string
- * Return: 1 is string is a number, 0 in other case
+ * Return: 1 if it is a number, 0 in other case
  */
 
 int _isdigit(const char *s)

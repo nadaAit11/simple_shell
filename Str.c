@@ -33,19 +33,19 @@ char *_strcat(char *dest, const char *src)
 
 char *_strcpy(char *dest, char *src)
 {
-	size_t a;
+	size_t s;
 
-	for (a = 0; src[a] != '\0'; a++)
-		dest[a] = src[a];
-	dest[a] = '\0';
+	for (s = 0; src[s] != '\0'; s++)
+		dest[s] = src[s];
+	dest[s] = '\0';
 
 	return (dest);
 }
 
 /**
  * _strcmp - function that compares two strings
- * @s1: type str compared
- * @s2: type str compared
+ * @s1: string to be compared
+ * @s2: string to be compared
  * Return: always 0
  */
 
@@ -71,13 +71,13 @@ int _strcmp(char *s1, char *s2)
  */
 char *_strchr(char *s, char c)
 {
-	unsigned int i = 0;
+	unsigned int j = 0;
 
-	for (; *(s + i) != '\0'; i++)
-		if (*(s + i) == c)
-			return (s + i);
-	if (*(s + i) == c)
-		return (s + i);
+	for (; *(s + j) != '\0'; j++)
+		if (*(s + j) == c)
+			return (s + j);
+	if (*(s + j) == c)
+		return (s + j);
 	return ('\0');
 }
 /**
