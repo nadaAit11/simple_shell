@@ -8,65 +8,65 @@
  */
 char *without_comment(char *in)
 {
-	int i, up_to;
+	int j, UP_TO;
 
-	up_to = 0;
-	for (i = 0; in[i]; i++)
+	UP_TO = 0;
+	for (j = 0; in[j]; j++)
 	{
-		if (in[i] == '#')
+		if (in[j] == '#')
 		{
-			if (i == 0)
+			if (j == 0)
 			{
 				free(in);
 				return (NULL);
 			}
-			if (in[i - 1] == ' ' || in[i - 1] == '\t' || in[i - 1] == ';')
-				up_to = i;
+			if (in[j - 1] == ' ' || in[j - 1] == '\t' || in[j - 1] == ';')
+				UP_TO = j;
 		}
 	}
-	if (up_to != 0)
+	if (UP_TO != 0)
 	{
-		in = _realloc(in, i, up_to + 1);
-		in[up_to] = '\0';
+		in = _realloc(in, j, UP_TO + 1);
+		in[UP_TO] = '\0';
 	}
 	return (in);
 }
 /**
  * shell_loop - loop of shell
- * @datash: data relevant (av, input, args)
+ * @datash: data relevant
  *
- * Return: no return.
+ * Return: nothing
  */
 void shell_loop(data_shell *datash)
 {
-	int loop, i_eof;
-	char *input;
+	int LOOP, i_eof;
+	char *inp;
 
-	loop = 1;
-	while (loop == 1)
+	LOOP = 1;
+	while (LOOP == 1)
 	{
 		write(STDIN_FILENO, "^,- ", 4);
-		input = read_line(&i_eof);
+		inp = read_line(&i_eof);
 		if (i_eof != -1)
 		{
-			input = without_comment(input);
-			if (input == NULL)
+			inp = without_comment(inp);
+			if (inp == NULL)
 				continue;
-			if (check_syntax_error(datash, input) == 1)
+			if (check_syntax_error(datash, inp) == 1)
 			{
 				datash->status = 2;
-				free(input);
+				free(inp);
 				continue;
 			}
-			input = rep_var(input, datash);
-			loop = split_commands(datash, input);
+			inp = rep_var(inp, datash);
+			LOOP = split_commands(datash, inp);
 			datash->counter += 1;
-			free(input);
+			free(inp);
 		}
 		else
 		{
-			loop = 0;
-			free(input);
+			LOOP = 0;
+			free(inp);
 		}
 	}
 }
