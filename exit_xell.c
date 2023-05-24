@@ -9,24 +9,24 @@
 
 int exit_shell(data_shell *datash)
 {
-	unsigned int ustatus;
-	int is_digit;
-	int str_len;
-	int big_number;
+	unsigned int stat;
+	int IS_digit;
+	int str_LEN;
+	int BIG_number;
 
 	if (datash->args[1] != NULL)
 	{
-		ustatus = _atoi(datash->args[1]);
-		is_digit = _isdigit(datash->args[1]);
-		str_len = _strlen(datash->args[1]);
-		big_number = ustatus > (unsigned int)INT_MAX;
-		if (!is_digit || str_len > 10 || big_number)
+		stat = _atoi(datash->args[1]);
+		IS_digit = _isdigit(datash->args[1]);
+		str_LEN = _strlen(datash->args[1]);
+		BIG_number = stat > (unsigned int)INT_MAX;
+		if (!IS_digit || str_LEN > 10 || BIG_number)
 		{
 			get_error(datash, 2);
 			datash->status = 2;
 			return (1);
 		}
-		datash->status = (ustatus % 256);
+		datash->status = (stat % 256);
 	}
 	return (0);
 }
