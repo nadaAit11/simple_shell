@@ -59,7 +59,7 @@ char *error_get_cd(data_shell *datash)
 	else
 	{
 		Msg = ": can't cd to ";
-		legth_id = _strlen(datash->args[1]);
+		length_id = _strlen(datash->args[1]);
 	}
 
 	length = _strlen(datash->av[0]) + _strlen(datash->args[0]);
