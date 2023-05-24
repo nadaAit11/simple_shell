@@ -24,9 +24,9 @@ int Repeated_Char(char *input, int i)
  */
 int Error_Sep_Op(char *input, int i, char last)
 {
-	int count;
+	int c;
 
-	count = 0;
+	c = 0;
 	if (*input == '\0')
 		return (0);
 	if (*input == ' ' || *input == '\t')
@@ -40,8 +40,8 @@ int Error_Sep_Op(char *input, int i, char last)
 			return (i);
 		if (last == '|')
 		{
-			count = Repeated_Char(input, 0);
-			if (count == 0 || count > 1)
+			c = Repeated_Char(input, 0);
+			if (c == 0 || c > 1)
 				return (i);
 		}
 	}
@@ -52,8 +52,8 @@ int Error_Sep_Op(char *input, int i, char last)
 			return (i);
 		if (last == '&')
 		{
-			count = Repeated_Char(input, 0);
-			if (count == 0 || count > 1)
+			c = Repeated_Char(input, 0);
+			if (c == 0 || c > 1)
 				return (i);
 		}
 	}
@@ -64,7 +64,7 @@ int Error_Sep_Op(char *input, int i, char last)
  * First_Char - Finds the index of the first char
  * @input: input string
  * @i: index
- * Return: 1 if there is an error, 0 in other case
+ * Return: 1 if there is an error, 0 in other cases
  */
 
 int First_Char(char *input, int *i)
@@ -86,46 +86,46 @@ int First_Char(char *input, int *i)
  * @input: input string
  * @i: index of the error
  * @bool: to control msg error
- * Return: no return
+ * Return: nothing
  */
 
 void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool)
 {
-	char *msg, *msg2, *msg3, *error, *counter;
-	int length;
+	char *Msg, *Msg2, *Msg3, *Error, *Counter;
+	int Length;
 
 	if (input[i] == ';')
 	{
 		if (bool == 0)
-			msg = (input[i + 1] == ';' ? ";;" : ";");
+			Msg = (input[i + 1] == ';' ? ";;" : ";");
 		else
-			msg = (input[i - 1] == ';' ? ";;" : ";");
+			Msg = (input[i - 1] == ';' ? ";;" : ";");
 	}
 	if (input[i] == '|')
-		msg = (input[i + 1] == '|' ? "||" : "|");
+		Msg = (input[i + 1] == '|' ? "||" : "|");
 	if (input[i] == '&')
-		msg = (input[i + 1] == '&' ? "&&" : "&");
-	msg2 = ": Syntax error: \"";
-	msg3 = "\" unexpected\n";
-	counter = aux_itoa(datash->counter);
-	length = _strlen(datash->av[0]) + _strlen(counter);
-	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
-	error = malloc(sizeof(char) * (length + 1));
-	if (error == 0)
+		Msg = (input[i + 1] == '&' ? "&&" : "&");
+	Msg2 = ": Syntax error: \"";
+	Msg3 = "\" unexpected\n";
+	Counter = aux_itoa(datash->counter);
+	Length = _strlen(datash->av[0]) + _strlen(Counter);
+	Length += _strlen(Msg) + _strlen(Msg2) + _strlen(Msg3) + 2;
+	Error = malloc(sizeof(char) * (Length + 1));
+	if (Error == 0)
 	{
-		free(counter);
+		free(Counter);
 		return;
 	}
-	_strcpy(error, datash->av[0]);
-	_strcat(error, ": ");
-	_strcat(error, counter);
-	_strcat(error, msg2);
-	_strcat(error, msg);
-	_strcat(error, msg3);
-	_strcat(error, "\0");
-	write(STDERR_FILENO, error, length);
-	free(error);
-	free(counter);
+	_strcpy(Error, datash->av[0]);
+	_strcat(Error, ": ");
+	_strcat(Error, Counter);
+	_strcat(Error, Msg2);
+	_strcat(Error, Msg);
+	_strcat(Error, Msg3);
+	_strcat(Error, "\0");
+	write(STDERR_FILENO, Error, Length);
+	free(Error);
+	free(Counter);
 }
 
 /**
@@ -134,26 +134,26 @@ void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool)
  *
  * @datash: data structure
  * @input: input string
- * Return: 1 if there is an error, 0 in other case
+ * Return: 1 if there is an error, 0 in other cases
  */
 
 int Check_Syntax_Error(data_shell *datash, char *input)
 {
-	int begin = 0;
+	int Begin = 0;
 	int f_char = 0;
 	int i = 0;
 
-	f_char = First_Char(input, &begin);
+	f_char = First_Char(input, &Begin);
 	if (f_char == -1)
 	{
-		Print_Syntax_Error(datash, input, begin, 0);
+		Print_Syntax_Error(datash, input, Begin, 0);
 		return (1);
 	}
 
-	i = Error_Sep_Op(input + begin, 0, *(input + begin));
+	i = Error_Sep_Op(input + Begin, 0, *(input + Begin));
 	if (i != 0)
 	{
-		Print_Syntax_Error(datash, input, begin + i, 1);
+		Print_Syntax_Error(datash, input, Begin + i, 1);
 		return (1);
 	}
 	return (0);
