@@ -6,7 +6,7 @@
  * @nenv: name og the environment variable
  * @name: name  passed.
  *
- * Return: 0 if are not equale, another value if they are
+ * Return: 0 if are not equal, a value if they are
  */
 
 int cmp_env_name(const char *nenv, const char *name)
@@ -30,31 +30,31 @@ int cmp_env_name(const char *nenv, const char *name)
  * @_environ: environment variable.
  *
  * Return: value of the environment variable if is found
- * in other case, return NULL
+ * in other cases, return NULL
  */
 
 char *_getenv(const char *name, char **_environ)
 {
-	char *ptr_env;
-	int i, mov;
+	char *ptr_envi;
+	int i, mv;
 
 	/* Initialize ptr_env value */
-	ptr_env = NULL;
-	mov = 0;
+	ptr_envi = NULL;
+	mv = 0;
 	/* Compare all environment variable */
 	/* environ is declared in the header file */
 	for (i = 0; _environ[i]; i++)
 	{
 		/* if name en env are equal */
-		mov = cmp_env_name(_environ[i], name);
-		if (mov)
+		mv = cmp_env_name(_environ[i], name);
+		if (mv)
 		{
-			ptr_env = _environ[i];
+			ptr_envi = _environ[i];
 			break;
 		}
 	}
 
-	return (ptr_env + mov);
+	return (ptr_envi + mv);
 }
 
 /**
