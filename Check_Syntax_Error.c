@@ -11,7 +11,7 @@
 int Repeated_Char(char *input, int i)
 {
 	if (*(input - 1) == *input)
-		return (repeated_char(input - 1, i + 1));
+		return (Repeated_Char(input - 1, i + 1));
 	return (i);
 }
 
@@ -30,7 +30,7 @@ int Error_Sep_Op(char *input, int i, char last)
 	if (*input == '\0')
 		return (0);
 	if (*input == ' ' || *input == '\t')
-		return (error_sep_op(input + 1, i + 1, last));
+		return (Error_Sep_Op(input + 1, i + 1, last));
 	if (*input == ';')
 		if (last == '|' || last == '&' || last == ';')
 			return (i);
@@ -40,7 +40,7 @@ int Error_Sep_Op(char *input, int i, char last)
 			return (i);
 		if (last == '|')
 		{
-			count = repeated_char(input, 0);
+			count = Repeated_Char(input, 0);
 			if (count == 0 || count > 1)
 				return (i);
 		}
@@ -52,12 +52,12 @@ int Error_Sep_Op(char *input, int i, char last)
 			return (i);
 		if (last == '&')
 		{
-			count = repeated_char(input, 0);
+			count = Repeated_Char(input, 0);
 			if (count == 0 || count > 1)
 				return (i);
 		}
 	}
-	return (error_sep_op(input + 1, i + 1, *input));
+	return (Error_Sep_Op(input + 1, i + 1, *input));
 }
 
 /**
@@ -143,17 +143,17 @@ int Check_Syntax_Error(data_shell *datash, char *input)
 	int f_char = 0;
 	int i = 0;
 
-	f_char = first_char(input, &begin);
+	f_char = First_Char(input, &begin);
 	if (f_char == -1)
 	{
-		print_syntax_error(datash, input, begin, 0);
+		Print_Syntax_Error(datash, input, begin, 0);
 		return (1);
 	}
 
-	i = error_sep_op(input + begin, 0, *(input + begin));
+	i = Error_Sep_Op(input + begin, 0, *(input + begin));
 	if (i != 0)
 	{
-		print_syntax_error(datash, input, begin + i, 1);
+		Print_Syntax_Error(datash, input, begin + i, 1);
 		return (1);
 	}
 	return (0);

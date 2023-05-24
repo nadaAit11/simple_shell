@@ -52,7 +52,7 @@ void shell_loop(data_shell *datash)
 			inp = without_comment(inp);
 			if (inp == NULL)
 				continue;
-			if (check_syntax_error(datash, inp) == 1)
+			if (Check_Syntax_Error(datash, inp) == 1)
 			{
 				datash->status = 2;
 				free(inp);
