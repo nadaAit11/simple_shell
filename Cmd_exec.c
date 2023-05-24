@@ -119,7 +119,8 @@ int Is_Executable(data_shell *datash)
 }
 
 /**
- * Check_Error_Cmd - Verifies if user has permissions to access
+ * Check_Error_Cmd - Verifies if the user has permissions to access a file
+ * or command.
  * @dir: destination directory
  * @datash: data structure
  * Return: 1 if there is an error, 0 if not
