@@ -141,11 +141,11 @@ int _isdigit(const char *s);
 void rev_string(char *s);
 
 
-/* check_syntax_error.c */
+/* Check_Syntax_Error.c */
 int repeated_char(char *input, int i);
 int error_sep_op(char *input, int i, char last);
 int first_char(char *input, int *i);
-void print_syntax_error(data_shell *datash, char *input, int i, int bool);
+void Print_Syntax_Error(data_shell *datash, char *input, int i, int bool);
 int check_syntax_error(data_shell *datash, char *input);
 
 
