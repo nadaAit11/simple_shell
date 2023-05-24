@@ -121,7 +121,7 @@ int split_commands(data_shell *datash, char *input)
 {
 	sep_list *head_s, *list_s;
 	line_list *head_l, *list_l;
-	int loop;
+	int Loop;
 
 	head_s = NULL;
 	head_l = NULL;
@@ -138,7 +138,7 @@ int split_commands(data_shell *datash, char *input)
 		loop = Exec_Line(datash);
 		free(datash->args);
 
-		if (loop == 0)
+		if (Loop == 0)
 			break;
 
 		go_next(&list_s, &list_l, datash);
@@ -149,7 +149,7 @@ int split_commands(data_shell *datash, char *input)
 	free_sep_list(&head_s);
 	free_line_list(&head_l);
 
-	if (loop == 0)
+	if (Loop == 0)
 		return (0);
 	return (1);
 }
@@ -162,33 +162,33 @@ char **split_line(char *input)
 {
 	size_t bsize;
 	size_t i;
-	char **tokens;
-	char *token;
+	char **Tokens;
+	char *Token;
 
 	bsize = TOK_BUFSIZE;
-	tokens = malloc(sizeof(char *) * (bsize));
-	if (tokens == NULL)
+	Tokens = malloc(sizeof(char *) * (bsize));
+	if (Tokens == NULL)
 	{
 		write(STDERR_FILENO, ": allocation error\n", 18);
 		exit(EXIT_FAILURE);
 	}
-	token = _strtok(input, TOK_DELIM);
-	tokens[0] = token;
+	Token = _strtok(input, TOK_DELIM);
+	Tokens[0] = Token;
 
-	for (i = 1; token != NULL; i++)
+	for (i = 1; Token != NULL; i++)
 	{
 		if (i == bsize)
 		{
 			bsize += TOK_BUFSIZE;
-			tokens = _reallocdp(tokens, i, sizeof(char *) * bsize);
-			if (tokens == NULL)
+			Tokens = _reallocdp(tokens, i, sizeof(char *) * bsize);
+			if (Tokens == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = _strtok(NULL, TOK_DELIM);
-		tokens[i] = token;
+		Token = _strtok(NULL, TOK_DELIM);
+		Tokens[i] = Token;
 	}
-	return (tokens);
+	return (Tokens);
 }
