@@ -8,33 +8,33 @@
 
 char *error_env(data_shell *datash)
 {
-	int length;
-	char *error;
+	int Length;
+	char *Error;
 	char *ver_str;
-	char *msg;
+	char *Msg;
 
 	ver_str = aux_itoa(datash->counter);
-	msg = ": Unable to add/remove from environment\n";
-	length = _strlen(datash->av[0]) + _strlen(ver_str);
-	length += _strlen(datash->args[0]) + _strlen(msg) + 4;
-	error = malloc(sizeof(char) * (length + 1));
-	if (error == 0)
+	Msg = ": Unable to add/remove from environment\n";
+	Length = _strlen(datash->av[0]) + _strlen(ver_str);
+	Length += _strlen(datash->args[0]) + _strlen(msg) + 4;
+	Error = malloc(sizeof(char) * (Length + 1));
+	if (Error == 0)
 	{
-		free(error);
+		free(Error);
 		free(ver_str);
 		return (NULL);
 	}
 
-	_strcpy(error, datash->av[0]);
-	_strcat(error, ": ");
-	_strcat(error, ver_str);
-	_strcat(error, ": ");
-	_strcat(error, datash->args[0]);
-	_strcat(error, msg);
-	_strcat(error, "\0");
+	_strcpy(Error, datash->av[0]);
+	_strcat(Error, ": ");
+	_strcat(Error, ver_str);
+	_strcat(Error, ": ");
+	_strcat(Error, datash->args[0]);
+	_strcat(Error, msg);
+	_strcat(Error, "\0");
 	free(ver_str);
 
-	return (error);
+	return (Error);
 }
 
 /**
@@ -45,28 +45,28 @@ char *error_env(data_shell *datash)
 
 char *error_path_126(data_shell *datash)
 {
-	int length;
+	int Length;
 	char *ver_str;
-	char *error;
+	char *Error;
 
 	ver_str = aux_itoa(datash->counter);
-	length = _strlen(datash->av[0]) + _strlen(ver_str);
-	length += _strlen(datash->args[0]) + 24;
-	error = malloc(sizeof(char) * (length + 1));
-	if (error == 0)
+	Length = _strlen(datash->av[0]) + _strlen(ver_str);
+	Length += _strlen(datash->args[0]) + 24;
+	Error = malloc(sizeof(char) * (Length + 1));
+	if (Error == 0)
 	{
-		free(error);
+		free(Error);
 		free(ver_str);
 		return (NULL);
 	}
 
-	_strcpy(error, datash->av[0]);
-	_strcat(error, ": ");
-	_strcat(error, ver_str);
-	_strcat(error, ": ");
-	_strcat(error, datash->args[0]);
-	_strcat(error, ": Permission denied\n");
-	_strcat(error, "\0");
+	_strcpy(Error, datash->av[0]);
+	_strcat(Error, ": ");
+	_strcat(Error, ver_str);
+	_strcat(Error, ": ");
+	_strcat(Error, datash->args[0]);
+	_strcat(Error, ": Permission denied\n");
+	_strcat(Error, "\0");
 	free(ver_str);
-	return (error);
+	return (Error);
 }
