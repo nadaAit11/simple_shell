@@ -16,7 +16,7 @@ char *Error_Env(data_shell *datash)
 	char *Msg;
 
 	ver_str = aux_itoa(datash->counter);
-	Msg = ": Unable to add/remove from environment\n";
+	Msg = ": Unable to add/remove from environment.\n";
 	Length = _strlen(datash->av[0]) + _strlen(ver_str);
 	Length += _strlen(datash->args[0]) + _strlen(Msg) + 4;
 	Error = malloc(sizeof(char) * (Length + 1));
