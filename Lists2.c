@@ -44,20 +44,20 @@ r_var *add_rvar_node(r_var **head, int lvar, char *val, int lval)
  * free_rvar_list - frees a r_var list.
  * @head: head of the linked list
  *
- * Return: no return
+ * Return: void
  */
 
 void free_rvar_list(r_var **head)
 {
 	r_var *temp;
-	r_var *curr;
+	r_var *cur;
 
 	if (head != NULL)
 	{
-		curr = *head;
-		while ((temp = curr) != NULL)
+		cur = *head;
+		while ((temp = cur) != NULL)
 		{
-			curr = curr->next;
+			cur = cur->next;
 			free(temp);
 		}
 		*head = NULL;
