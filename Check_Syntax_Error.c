@@ -81,7 +81,7 @@ int first_char(char *input, int *i)
 }
 
 /**
- * Print_Syntax_Error - prints when a syntax error is found
+ * Print_Syntax_Error - Prints when a syntax error is found.
  * @datash: data structure
  * @input: input string
  * @i: index of the error
